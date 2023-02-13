@@ -1,0 +1,18 @@
+init:
+	pyenv local 3.10 3.11
+	poetry shell
+
+flake8:
+	flake8
+
+mypy:
+	mypy
+
+black:
+	black --check --diff src/
+
+linting: flake8 mypy black
+
+pre-commit: flake8 mypy black
+	poetry install
+	cd docs/ && make html

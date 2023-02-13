@@ -1,0 +1,28 @@
+[flake8]
+max-line-length = 88
+extend-select =
+    # bugbear
+    B
+    # bugbear opinions
+    B9
+    # implicit str concat
+    ISC
+extend-ignore =
+    # slice notation whitespace, invalid
+    E203
+    # line length, handled by bugbear B950
+    E501
+    # bare except, handled by bugbear B001
+    E722
+    # zip with strict=, requires python >= 3.10
+    B905
+    # string formatting opinion, B028 renamed to B907
+    B028
+    B907
+per-file-ignores = 
+    # __init__ export names
+    src/minimal_web_scraper/__init__.py: F401
+    src/minimal_web_scraper/parsers/__init__.py: F401
+exclude =
+    example/
+    .tox/
