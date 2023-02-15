@@ -2,12 +2,12 @@ Example
 =======
 
 First, you need to write the parser that will be used by the library.
-For this example, `BeautifulSoup <bs4>`_ is the library used to parse the HTML.
+For this example, `BeautifulSoup <bs4_>`_ is the library used to parse the HTML.
 
 Parsers
 -------
 
-These are parsers of https://books.toscrape.com/ and individual product page (`example <product-page>`_):
+These are parsers of https://books.toscrape.com/ and individual product page (`example <product-page_>`_):
 
 .. include:: ../../example/parser_example.py
     :code: python
@@ -45,7 +45,7 @@ The result should look like:
 
     [5 rows x 5 columns]
 
-Find those `examples <repo-example>`_ on the Github repository.
+Find those `examples <repo-example_>`_ on the Github repository.
 
 .. _repo-example: https://github.com/Gamma120/minimal-web-scraper/tree/main/example
 .. _bs4: https://beautiful-soup-4.readthedocs.io/en/latest/

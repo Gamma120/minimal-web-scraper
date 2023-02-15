@@ -15,7 +15,7 @@ Quick Start
 
 Here is a small script that demonstrate how to use the library.
 Notice that the library doesn't not provide any `parser <https://en.wikipedia.org/wiki/Parsing#Parser>`_.
-See :doc:`example` or the `Github repository <repo-example>`_ for a working scraper.
+See :doc:`example` or the `Github repository <repo-example_>`_ for a working scraper.
 
 .. include:: ../../example/example.py
     :code: python
