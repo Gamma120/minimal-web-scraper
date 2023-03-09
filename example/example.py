@@ -18,6 +18,6 @@ parsers.add_parser()
 # Scrape the url in argument and return a dictionnary of parsed data
 data = scraper.scrape("https://books.toscrape.com/")
 
-# Pretty formatting with pandas
-books = pd.DataFrame(data)
+# Pretty output formatting with pandas
+books = pd.DataFrame(data=data, columns=["name", "price"])
 print(books.head(5))
