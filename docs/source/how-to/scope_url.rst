@@ -1,5 +1,5 @@
 Choose the scope_url
-===========================
+====================
 
 ``scope_url`` is a mandatory attribut of parsers classes. It is essential to set it up correctly to make the library work as expected.
 
@@ -11,7 +11,7 @@ When ``scrape`` function is called, it will select the parser that match the giv
 Example
 -------
 
-In the `Github repository <parser-example>`_, there are two parsers.
+In the `Github repository <parser-example_>`_, there are two parsers.
 
 - ``BooksParser`` is a parser with a ``scope_url`` books.toscrape.com/
 - ``BookParser`` is a parser with a ``scope_url`` books.toscrape.com/catalogue/

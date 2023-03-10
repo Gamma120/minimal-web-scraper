@@ -27,10 +27,12 @@ copyright = f"2023, {author}"
 
 extensions = [
     "sphinx.ext.duration",
+    "sphinx.ext.coverage",
     "sphinx.ext.doctest",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx_tabs.tabs",
+    "sphinx_copybutton",
 ]
 
 templates_path = ["_templates"]
@@ -40,6 +42,10 @@ templates_path = ["_templates"]
 
 html_theme = "furo"
 html_static_path = ["_static"]
+
+# -- Options for the coverage extension --------------------------------------
+
+coverage_show_missing_items = True
 
 # Global replacements
 

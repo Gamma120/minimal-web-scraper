@@ -24,6 +24,6 @@ The recommanded tools to write the ``parser`` method are the BeautifulSoup and r
 But, any library parsing HTML formatted string could be used.
 
 
-To see complete working parsers, check out the `Github repository <parser-example>`_.
+To see complete working parsers, check out the `Github repository <parser-example_>`_.
 
 .. _parser-example: https://github.com/Gamma120/minimal-web-scraper/blob/main/example/parser_example.py
