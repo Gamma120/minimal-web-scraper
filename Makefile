@@ -1,3 +1,9 @@
+.PHONY: docs
+
+pre-commit: linting docs
+	poetry install
+	tox
+
 init:
 	pyenv local 3.10 3.11
 	poetry shell
@@ -13,6 +19,5 @@ black:
 
 linting: flake8 mypy black
 
-pre-commit: flake8 mypy black
-	poetry install
-	cd docs/ && make html
+docs:
+	cd docs/ && make linkcheck && make coverage && make html
