@@ -22,6 +22,7 @@ email = project_metadata["author-email"]
 version = project_metadata["version"]
 copyright = f"2023, {author}"
 
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -33,6 +34,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx_tabs.tabs",
     "sphinx_copybutton",
+    "autoapi.extension",
 ]
 
 templates_path = ["_templates"]
@@ -43,11 +45,29 @@ templates_path = ["_templates"]
 html_theme = "furo"
 html_static_path = ["_static"]
 
+
 # -- Options for the coverage extension --------------------------------------
 
 coverage_show_missing_items = True
 
-# Global replacements
+
+# -- autoapi configuration ---------------------------------------------------
+
+
+autoapi_type = "python"
+autoapi_dirs = ["../../src"]
+autoapi_template_dir = "_templates/autoapi"
+autodoc_typehints = "description"
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+]
+
+
+# -- Global replacements -----------------------------------------------------
 
 python_version = project_metadata["requires-python"]
 requires = metadata.requires(project)
