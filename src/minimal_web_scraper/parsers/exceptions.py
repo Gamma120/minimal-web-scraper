@@ -5,6 +5,6 @@ class BaseParserException(Exception):
 
 
 class ParserNotFound(BaseParserException):
-    """Exception raised when the scraper does not find a parser associated to an URL."""
+    """Exception raised when the scraper does not find a parser associated to a URL."""
 
     pass

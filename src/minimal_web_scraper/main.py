@@ -21,15 +21,15 @@ headers = {
 
 def download(target_url: str, timeout: int = 1) -> tuple[bytes, str | None]:
     """
-    Download the html content of the url, using requests library.
+    Download the HTML content of the URL, using requests library.
 
     Use a custom header.
 
     :param target_url: url to download
     :type target_url: str
-    :raise ValueError: if the target_url is not a valid url
+    :raise ValueError: if the target_url is not a valid URL
     :raise: may raise exceptions from the requests and urlparse library
-    :return: content of the html page and the encoding
+    :return: content of the HTML page and the encoding
     """
     # add scheme if not provided
     if not re.match(r"^https?://", target_url):
@@ -50,10 +50,10 @@ def download(target_url: str, timeout: int = 1) -> tuple[bytes, str | None]:
 
 def scrape(url: str) -> list[dict]:
     """
-    Orchestrate the download and parse of the ressource at the url.
+    Orchestrate the download and parse of the resource at the URL.
 
-    :param url: url to parse
-    :return: a list of dictionnaries which contain extracted informations by
+    :param url: URL to parse
+    :return: a list of dictionaries which contain extracted informations by
         a implemented subclass of :meth:`parsers.BaseParser.parse`
     """
     parser = find_parser(url)

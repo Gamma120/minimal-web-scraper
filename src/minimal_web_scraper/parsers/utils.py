@@ -5,9 +5,9 @@ from .exceptions import ParserNotFound
 
 
 def find_parser(url: str) -> Type[BaseParser]:
-    """Find the parser for the associate url.
+    """Find the parser for the associate URL.
 
-    The scope_url attribut of the parser is compared to the argument.
+    The scope_url attribute of the parser is compared to the argument.
 
     :param url:
     :raise ParserNotFound: raised when no registered parser can handle `url`

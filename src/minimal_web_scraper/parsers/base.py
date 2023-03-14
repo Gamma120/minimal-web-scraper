@@ -26,6 +26,6 @@ class BaseParser(metaclass=ABCMeta):
 
         :param html_content: the raw HTML to parse
         :param encoding: the associated encoding of the HTML
-        :returns: Should return a list of dictionnaries of the extracted elements
+        :returns: Should return a list of dictionaries of the extracted elements
         """
         pass
