@@ -12,7 +12,7 @@ class BooksParser(BaseParser):
     scope_url = "books.toscrape.com"
 
     @classmethod
-    def parse(cls, html_content: bytes, encoding: str) -> list[dict]:
+    def parse(cls, html_content: bytes, encoding: str | None) -> list[dict]:
         scraped_items = []
         soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
         books = soup.find_all("article", class_="product_pod")
@@ -49,7 +49,7 @@ class BookParser(BaseParser):
     scope_url = "books.toscrape.com/catalogue/"
 
     @classmethod
-    def parse(cls, html_content: bytes, encoding: str) -> list[dict]:
+    def parse(cls, html_content: bytes, encoding: str | None) -> list[dict]:
         soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
         book = soup.find("article", class_="product_page")
 

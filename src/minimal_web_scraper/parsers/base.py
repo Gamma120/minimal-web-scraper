@@ -14,5 +14,5 @@ class BaseParser(metaclass=ABCMeta):
 
     @classmethod
     @abstractmethod
-    def parse(cls, html_content: bytes, encoding: str) -> list[dict]:
+    def parse(cls, html_content: bytes, encoding: str | None) -> list[dict]:
         pass
