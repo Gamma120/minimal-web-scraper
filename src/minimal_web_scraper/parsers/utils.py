@@ -4,16 +4,14 @@ from .base import BaseParser
 from .exceptions import ParserNotFound
 
 
-def find_parser(url: str):
+def find_parser(url: str) -> Type[BaseParser]:
     """Find the parser for the associate url.
+
     The scope_url attribut of the parser is compared to the argument.
 
-    Args:
-        url (str):
-    Raises:
-        NotImplementedError: no parser is associated to the url
-    Returns:
-        associated parser
+    :param url:
+    :raise ParserNotFound: raised when no registered parser can handle `url`
+    :returns: associated parser
     """
     selected_parser = None
     most_index = 0
@@ -33,12 +31,9 @@ def find_parser(url: str):
 def add_parser(parser: Type[BaseParser] | None = None) -> None:
     """Add the given parser in the list that the scraper checks for parsing data.
 
-    Args:
-        parser (Type[BaseParser] | None, optional): The parser must be a subclass of BaseParser.
-        If no parser is provided, add_parser will add all parsers imported. Defaults to None.
-
-    Raises:
-        TypeError: raised when the argument parser is not a subclass of BaseParser
+    :param parser: the parser must be a subclass of BaseParser.
+        If no parser is provided, it will add all parsers imported (default None).
+    :raise TypeError: raised when the argument parser is not a subclass of :class:`BaseParser`
     """
     if parser:
         if not issubclass(parser, BaseParser) and parser is not BaseParser:
@@ -51,6 +46,7 @@ def add_parser(parser: Type[BaseParser] | None = None) -> None:
 
 
 def _get_all_subclasses(cls) -> list:
+    """Find all subclasses of `cls`"""
     all_subclasses = []
 
     for subclass in cls.__subclasses__():

@@ -1,7 +1,7 @@
 Installation
 ============
 
-This will guides you through the installation of Python and set up of your project environment.
+This will guide you through the installation of Python and set up of your project environment.
 If you already have Python on your machine and know how to use a virtual environment,
 you can skip to `Download the library`_.
 
@@ -14,7 +14,7 @@ Python
 Check Python version
 ^^^^^^^^^^^^^^^^^^^^
 
-Before installing python, you may want to verify that it is not already installed. Most of the Linux distributions comes with python.
+Before installing Python, you may want to verify that it is not already installed. Most of the Linux distributions come with Python.
 
 .. tabs::
 
@@ -30,7 +30,7 @@ Before installing python, you may want to verify that it is not already installe
         
             $ python --version
 
-If python is installed, the command should return something like ``Python 3.10`` or a higher version of Python.
+If Python is installed, the command should returns something like ``Python 3.10`` or a higher version of Python.
 You can skip to `Virtual environment`_, else read the next paragraph.
 
 
@@ -55,7 +55,7 @@ I recommand you to check the box ``Add Python to PATH``, to make Python availabl
 Linux
 """""
 
-If your distribution is not represented here, use its the package manager.
+If your distribution is not represented here, use its package manager.
 
 .. tabs::
     
@@ -98,7 +98,7 @@ Virtual environment
 
 Official documentation of ``venv``: https://docs.python.org/3/library/venv.html.
 
-It is recommanded to use a virtual environment to manage dependancies:
+It is recommended to use a virtual environment to manage dependencies:
 
 .. tabs::
 
@@ -167,19 +167,19 @@ And the following command should return:
             (venv)$ which python
             <path/to/your/project>/my_first_scraper/venv/bin/python
 
-If the path return is not of this shape, reiterate the command from :ref:`tuto-activate-env`
+If the path returned is not of this shape, reiterate the command from :ref:`tuto-activate-env`
 
 
 Download the library
 """"""""""""""""""""
 
-To use the library, we need first to download it. For that, the stardard tool is ``pip``:
+To use the library, we need first to download it. For that, the standard tool is ``pip``:
 
 .. code-block:: console
 
     (venv)$ pip install git+https://github.com/Gamma120/minimal-web-scraper.git
 
-If ``pip`` don't throw an error, the library is installed and available to use in our project.
+If ``pip`` don't throw an error, the library is installed and available to use in your project.
 
 
 .. note::
@@ -190,11 +190,11 @@ If ``pip`` don't throw an error, the library is installed and available to use i
 
     |requires-dist|
 
-    They will be automaticaly downloaded and installed with minimal-web-scraper.
+    They are automatically downloaded and installed with minimal-web-scraper.
 
 
 .. note::
-    The library is not published on Pypi_, this is why we use the github repository url. See `VCS support`_ on pip documentation.
+    The library is not published on Pypi_, this is why we use the github repository URL. See `VCS support`_ on pip documentation.
 
 
 Next

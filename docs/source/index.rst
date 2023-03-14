@@ -23,7 +23,7 @@ See the `example <repo-example_>`_ at the Github repository for a working scrape
 
 
 .. note::
-   This project is in development state and the author doesn't guarantee the stability of its API.
+   This project is in development state, and the author doesn't guarantee the stability of its API.
 
 
 This is a really small library, if you need a comprehensive and proven web scraper in your favorite language, check out `Scrapy`_ framework.
@@ -32,7 +32,7 @@ This is a really small library, if you need a comprehensive and proven web scrap
 Get started
 ===========
 
-Check out :doc:`tutorials/index` for a step-by-step instructions to set up a project using minimal-web-scraper.
+Check out :doc:`tutorials/index` for a step-by-step instruction to set up a project using minimal-web-scraper.
 
 .. toctree::
    :maxdepth: 2

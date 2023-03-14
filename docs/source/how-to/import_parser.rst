@@ -1,5 +1,5 @@
 Import a parser
-======================
+===============
 
 You have a parser in a file named ``my_parser.py`` and want to use it in your script ``main.py``.
 

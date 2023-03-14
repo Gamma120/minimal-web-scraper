@@ -1,12 +1,11 @@
 Choose the scope_url
 ====================
 
-``scope_url`` is a mandatory attribut of parsers classes. It is essential to set it up correctly to make the library work as expected.
+``scope_url`` is a mandatory attribute of parsers classes. It is essential to set it up correctly to make the library work as expected.
 
+``scope_url`` is used by the library to choose which parser to call to parse an URL.
 
-``scope_url`` is used by the library to choose which parser to call to parse an url.
-
-When ``scrape`` function is called, it will select the parser that match the given url.
+When ``scrape`` function is called, it will select the parser that match the given URL.
 
 Example
 -------

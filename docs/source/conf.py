@@ -29,9 +29,6 @@ copyright = f"2023, {author}"
 extensions = [
     "sphinx.ext.duration",
     "sphinx.ext.coverage",
-    "sphinx.ext.doctest",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
     "sphinx_tabs.tabs",
     "sphinx_copybutton",
     "autoapi.extension",
@@ -44,6 +41,7 @@ templates_path = ["_templates"]
 
 html_theme = "furo"
 html_static_path = ["_static"]
+html_css_files = ["css/custom.css"]
 
 
 # -- Options for the coverage extension --------------------------------------
@@ -57,7 +55,7 @@ coverage_show_missing_items = True
 autoapi_type = "python"
 autoapi_dirs = ["../../src"]
 autoapi_template_dir = "_templates/autoapi"
-autodoc_typehints = "description"
+autodoc_typehints = "signature"
 autoapi_options = [
     "members",
     "undoc-members",
@@ -65,6 +63,39 @@ autoapi_options = [
     "show-module-summary",
     "imported-members",
 ]
+
+# autoapi_keep_files = True
+
+# -- custom auto_summary() macro ---------------------------------------------
+# from https://bylr.info/articles/2022/05/10/api-doc-with-sphinx-autoapi/
+
+
+def contains(seq, item):
+    """Jinja2 custom test to check existence in a container.
+    Example of use:
+    {% set class_methods = methods|selectattr("properties", "contains", "classmethod") %}
+    Related doc: https://jinja.palletsprojects.com/en/3.1.x/api/#custom-tests
+    """
+    return item in seq
+
+
+def prepare_jinja_env(jinja_env) -> None:
+    """Add `contains` custom test to Jinja environment."""
+    jinja_env.tests["contains"] = contains
+
+
+autoapi_prepare_jinja_env = prepare_jinja_env
+
+
+def skip_member(app, what, name, obj, skip, options):
+    # skip submodules to only display API
+    if what == "module":
+        skip = True
+    return skip
+
+
+def setup(sphinx):
+    sphinx.connect("autoapi-skip-member", skip_member)
 
 
 # -- Global replacements -----------------------------------------------------
@@ -78,4 +109,5 @@ rst_prolog = f"""
 .. |python-version| replace:: **{python_version}**
 .. |requires-dist| replace:: {requires_str}
 .. |email| replace:: {email}
+.. role:: summarylabel
 """

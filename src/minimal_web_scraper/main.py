@@ -3,9 +3,7 @@ from urllib.parse import urlparse
 
 import requests
 
-from .parsers import find_parser
-
-TIMEOUT = 1
+from .parsers.utils import find_parser
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) \
@@ -21,18 +19,17 @@ headers = {
 }
 
 
-def download(target_url: str, timeout: int = TIMEOUT) -> tuple[bytes, str | None]:
+def download(target_url: str, timeout: int = 1) -> tuple[bytes, str | None]:
     """
     Download the html content of the url, using requests library.
+
     Use a custom header.
 
     :param target_url: url to download
     :type target_url: str
-    :raise ValueError: If the target_url is not a valid url.
-        May raise exceptions from the requests and urlparse library.
+    :raise ValueError: if the target_url is not a valid url
+    :raise: may raise exceptions from the requests and urlparse library
     :return: content of the html page and the encoding
-    :rtype: bytes, str
-
     """
     # add scheme if not provided
     if not re.match(r"^https?://", target_url):
@@ -51,14 +48,13 @@ def download(target_url: str, timeout: int = TIMEOUT) -> tuple[bytes, str | None
     return response.content, response.encoding
 
 
-def scrape(url: str) -> dict:
+def scrape(url: str) -> list[dict]:
     """
     Orchestrate the download and parse of the ressource at the url.
 
     :param url: url to parse
-    :type url: str
-    :return: Dictionnary of key:value pairs produced by the parser
-    :rtype: dict
+    :return: a list of dictionnaries which contain extracted informations by
+        a implemented subclass of :meth:`parsers.BaseParser.parse`
     """
     parser = find_parser(url)
     content, encoding = download(url)

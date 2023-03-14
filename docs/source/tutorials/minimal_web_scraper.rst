@@ -4,23 +4,23 @@ minimal-web-scraper
 Objectif
 --------
 
-This example project scrape informations from this website: https://books.toscrape.com/.
-We want to collect the name of the products on that site, their price and availablity to display them in a table.
+This example project scrapes informations from this website: https://books.toscrape.com/.
+We want to collect the name of the products on that site, their price and availability to display them in a table.
 
 The project name for this example is ``my_first_scraper``, feel free to replace this by your own project name.
 
 .. note::
 
-    This tutorial will no explains how to use BeautifulSoup, see `BeautifulSoup documentation <https://beautiful-soup-4.readthedocs.io/en/latest/#making-the-soup>`_.
+    This tutorial will not explain how to use BeautifulSoup, see `BeautifulSoup documentation <https://beautiful-soup-4.readthedocs.io/en/latest/#making-the-soup>`_.
 
 Parsers
 -------
 
-The file ``parsers_example.py`` host the code of our parsers.
+The file ``parsers_example.py`` hosts the code of our parsers.
 
-The purpose of this function is to grab the informations we want from the page and pack it in a dictionnary we can easly manipulate.
+The purpose of this function is to grab the informations we want from the page and to pack it in a dictionary we can easily manipulate.
 
-This is the minimal requiered in a parser from the library.
+This is the minimal required in a parser from the library.
 
 .. code-block:: python
 
@@ -34,7 +34,7 @@ This is the minimal requiered in a parser from the library.
             return []
 
 
-In our case, the parser parse the data from https://books.toscrape.com/, so it is our ``scope_url``.
+In our case, the parser parses the data from https://books.toscrape.com/, so it is our ``scope_url``.
 
 .. code-block:: python
     :emphasize-lines: 4
@@ -48,8 +48,8 @@ In our case, the parser parse the data from https://books.toscrape.com/, so it i
         def parser(cls, html_content, encoding):
             return []
 
-The ``parser`` method receive a ``html_content`` as an argument. It is the text file that contains the informations we want to extract.
-To easly navigate in this file, we use the secrets ingredients: `BeautifulSoup <bs4_>`_ and `re <https://docs.python.org/3/library/re.html>`_.
+The ``parser`` method receives a ``html_content`` as an argument. It is the text file that contains the informations we want to extract.
+To easily navigate in this file, we use the secrets ingredients: `BeautifulSoup <bs4_>`_ and `re <https://docs.python.org/3/library/re.html>`_.
 It will do most of the work for us.
 
 .. code-block:: python
@@ -69,7 +69,7 @@ It will do most of the work for us.
             return []
 
 The page https://books.toscrape.com/ contains multiple books. BeautifulSoup give us a list ``books``.
-Each element ``book`` of this list contains informations on one book. In a ``for loop``, we create a dictionnary ``item`` that contains the informations we want to return.
+Each element ``book`` of this list contains informations on one book. In a ``for loop``, we create a dictionary ``item`` that contains the informations we want to return.
 
 .. code-block:: python
     :emphasize-lines: 11,13-25
@@ -184,7 +184,7 @@ Optionally, we format the data:
             return scraped_items
 
 
-Here what it look like at the end:
+Here what it looks like at the end:
 
 .. code-block:: python
 
@@ -230,7 +230,7 @@ Here what it look like at the end:
 Scraper
 -------
 
-The file ``main.py`` host the script that call the library and the parser.
+The file ``main.py`` hosts the script that call the library and the parser.
 
 .. include:: ../../../example/example.py
     :code: python
@@ -286,7 +286,7 @@ Here is the result:
 Next
 ----
 
-Now, you have a working parser, you can try to write a new one for single products pages of the same site (`example <https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html>`_).
+Now that you have a working parser, you can try to write a new one for single products pages of the same site (`example <https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html>`_).
 If you need help, you can check a possible answer at the `Github repository <parser-example_>`_.
 
 
