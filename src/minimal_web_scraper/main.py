@@ -1,5 +1,6 @@
 import re
 from urllib.parse import urlparse
+from typing import Any
 
 import requests
 
@@ -48,13 +49,12 @@ def download(target_url: str, timeout: int = 1) -> tuple[bytes, str | None]:
     return response.content, response.encoding
 
 
-def scrape(url: str) -> list[dict]:
+def scrape(url: str) -> Any:
     """
     Orchestrate the download and parse of the resource at the URL.
 
     :param url: URL to parse
-    :return: a list of dictionaries which contain extracted informations by
-        a implemented subclass of :meth:`parsers.BaseParser.parse`
+    :return: extracted informations by a implemented :meth:`parsers.BaseParser.parse`
     """
     parser = find_parser(url)
     content, encoding = download(url)

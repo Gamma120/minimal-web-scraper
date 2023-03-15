@@ -1,4 +1,4 @@
-from typing import Type
+from typing import Type, Any
 
 from .base import BaseParser
 from .exceptions import ParserNotFound
@@ -40,14 +40,13 @@ def add_parser(parser: Type[BaseParser] | None = None) -> None:
             raise TypeError(f"Argument is not a subclass of BaseParser: {repr(parser)}")
         _parsers.add(parser)
     else:
-        for parser in _get_all_subclasses(BaseParser):
-            # don't really understand why mypy considers that parser could be None
-            _parsers.add(parser)  # type: ignore[arg-type]
+        for sub_parser in _get_all_subclasses(BaseParser):
+            _parsers.add(sub_parser)
 
 
-def _get_all_subclasses(cls) -> list:
+def _get_all_subclasses(cls: Any) -> list[Any]:
     """Find all subclasses of `cls`"""
-    all_subclasses = []
+    all_subclasses: list[Any] = []
 
     for subclass in cls.__subclasses__():
         all_subclasses.append(subclass)

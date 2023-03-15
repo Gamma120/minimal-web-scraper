@@ -12,7 +12,7 @@ flake8:
 	flake8
 
 mypy:
-	mypy
+	mypy --strict
 
 black:
 	black --check --diff src/

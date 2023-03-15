@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from typing import Any
 
 
 class BaseParser(metaclass=ABCMeta):
@@ -21,11 +22,11 @@ class BaseParser(metaclass=ABCMeta):
 
     @classmethod
     @abstractmethod
-    def parse(cls, html_content: bytes, encoding: str | None) -> list[dict]:
+    def parse(cls, html_content: bytes, encoding: str | None) -> Any:
         """Abstract method to parse HTML chunks.
 
         :param html_content: the raw HTML to parse
         :param encoding: the associated encoding of the HTML
-        :returns: Should return a list of dictionaries of the extracted elements
+        :returns: return the extracted elements
         """
         pass

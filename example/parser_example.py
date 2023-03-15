@@ -49,11 +49,13 @@ class BookParser(BaseParser):
     scope_url = "books.toscrape.com/catalogue/"
 
     @classmethod
-    def parse(cls, html_content: bytes, encoding: str | None) -> list[dict]:
+    def parse(
+        cls, html_content: bytes, encoding: str | None
+    ) -> dict[str, str | float | int | None]:
         soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
         book = soup.find("article", class_="product_page")
 
-        item = {
+        item: dict[str, str | float | int | None] = {
             "name": None,
             "url": None,
             "availability": None,
@@ -72,4 +74,4 @@ class BookParser(BaseParser):
             matched = re.search("(In stock|Out of stock)", item["availability"])
             item["availability"] = matched[0]
 
-        return [item]
+        return item
