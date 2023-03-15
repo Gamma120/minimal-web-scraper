@@ -11,6 +11,18 @@ The library supports Python |python-version|.
    Please be aware of the legal implication of scraping information from internet: https://en.wikipedia.org/wiki/Web_scraping#Legal_issues
 
 
+.. note::
+    The library is not published on Pypi_, this is why we use the github repository URL and you must have git installed. See `VCS support`_ on pip documentation.
+
+
+Dependencies
+============
+
+Those are the libraries that minimal-web-scraper uses to work:
+
+|requires-dist|
+
+
 Quick Start
 ===========
 
@@ -52,13 +64,15 @@ Check out :doc:`how-to/index` for specific guides on the library.
 
 
 
-API
-===
+References
+==========
 
 .. toctree::
    :maxdepth: 2
 
+   references/index
    autoapi/index
+
 
 More
 ====
@@ -71,5 +85,7 @@ More
    changes
 
 
+.. _Pypi: https://pypi.org/
+.. _VCS support: https://pip.pypa.io/en/stable/topics/vcs-support/
 .. _repo-example: https://github.com/Gamma120/minimal-web-scraper/tree/main/example
 .. _Scrapy: https://scrapy.org/

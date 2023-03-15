@@ -13,14 +13,14 @@ Here is the skeleton of a parser compatible with the library:
         scope_url = ""
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             return []
 
 - The parser **must** inherit from the ``BaseParser`` class from the library.
-- It **must** contain ``scope_url`` variable and a ``parser`` method.
-- ``parser`` method **must** be a ``@classmethod`` and return a list of dictionary elements.
+- It **must** contain ``scope_url`` variable and a ``parse`` method.
+- ``parse`` method **must** be a ``@classmethod`` and return a list of dictionary elements.
 
-The recommended tools to write the ``parser`` method are the BeautifulSoup and re libraries.
+The recommended tools to write the ``parse`` method are the ``BeautifulSoup`` and ``re`` libraries.
 But any library parsing HTML formatted string could be used.
 
 

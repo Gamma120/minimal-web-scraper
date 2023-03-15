@@ -7,5 +7,4 @@ How-to guides
 
     create_parser
     import_parser
-    scope_url
 

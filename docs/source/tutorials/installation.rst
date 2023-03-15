@@ -8,6 +8,62 @@ you can skip to `Download the library`_.
 The project name for this example is ``my_first_scraper``, feel free to replace this by your own project name.
 
 
+Git
+---
+
+You will also need to install `Git`_ for this tutorial.
+
+Check Git version
+^^^^^^^^^^^^^^^^^
+
+Before installing Git, you you may want to verify that it is not already installed. Most of the Linux distributions come with GIt.
+
+Open a terminal:
+
+.. code-block::
+
+    $ git --version
+
+If Git is installed, the command should returns something like ``git version X.X.X``.
+You can skip to `Python`_, else read the next paragraph.
+
+
+Git Installation
+^^^^^^^^^^^^^^^^
+
+Official guide: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+Windows
+"""""""
+
+The official site to download Git : https://git-scm.com/download/win.
+
+Follow the instruction of the installer and verify the installation by running the command at `Check Git version`_.
+
+Linux
+"""""
+
+Execute the following commands:
+
+.. tabs::
+
+    .. group-tab:: Debian/Ubuntu
+
+        .. code-block::
+
+            $ sudo apt update
+            $ sudo apt install git
+    
+    .. group-tab:: Fedora
+
+        .. code-block::
+
+            $ dnf check-update
+            $ sudo dnf install git
+  
+Verify the installation by running the command at `Check Git version`_.
+
+
 Python
 ------
 
@@ -16,22 +72,14 @@ Check Python version
 
 Before installing Python, you may want to verify that it is not already installed. Most of the Linux distributions come with Python.
 
-.. tabs::
+Open a terminal:
 
-    .. group-tab:: Windows
-
-        .. code-block:: console
-            
-            > py --version
-
-    .. tab:: Linux
-
-        .. code-block:: console
+.. code-block:: console
         
-            $ python --version
+    $ python --version
 
 If Python is installed, the command should returns something like ``Python 3.10`` or a higher version of Python.
-You can skip to `Virtual environment`_, else read the next paragraph.
+You can skip to `Project creation`_, else read the next paragraph.
 
 
 Python Installation
@@ -63,8 +111,8 @@ If your distribution is not represented here, use its package manager.
 
         .. code-block:: console
         
-            $ apt update
-            $ sudo apt install python
+            $ sudo apt update
+            $ sudo apt install python3
         
     .. group-tab:: Fedora
         
@@ -100,23 +148,10 @@ Official documentation of ``venv``: https://docs.python.org/3/library/venv.html.
 
 It is recommended to use a virtual environment to manage dependencies:
 
-.. tabs::
+.. code-block:: console
 
-    .. group-tab:: Windows
+    $ python -m venv venv
 
-        .. code-block:: console
-    
-            > py -m venv venv
-    
-    .. group-tab:: Linux
-
-        .. code-block:: console
-
-            $ python -m venv venv
-
-
-minimal-web-scraper installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now your project directory should be:
 
@@ -126,22 +161,32 @@ Now your project directory should be:
     |
     - venv
 
-.. _tuto-activate-env:
 
+minimal-web-scraper installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Activation of the environement
 """"""""""""""""""""""""""""""
 
 In a terminal, activate the newly created virtual environment with:
 
+.. _activate_env:
+
 .. tabs::
 
-    .. group-tab:: Windows
+    .. group-tab:: Windows cmd
 
         .. code-block:: console
     
-            > venv\Script\activate.bat
+            $ venv\Scripts\activate.bat
+
+
+    .. group-tab:: Windows PowerShell
+
+        .. code-block:: console
     
+            $ venv\Scripts\Activate.ps1
+
     .. group-tab:: Linux
 
         .. code-block:: console
@@ -149,52 +194,46 @@ In a terminal, activate the newly created virtual environment with:
             $ source venv/bin/activate
 
 You should see now, a ``(venv)`` has been append before the prompt of your command line.
-And the following command should return:
+
+.. note::
+
+    PowerShell can throw you an error. See `about Execution policies <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3>`_.
+
+Execute the following command (there is no equivalent in cmd):
 
 .. tabs::
 
-    .. group-tab:: Windows
+    .. group-tab:: Windows PowerShell
 
         .. code-block:: console
 
-            (venv)> which python
-            <path/to/your/project>\my_first_scraper\venv\Script\python
+            (venv)$ Get-Command python
 
     .. group-tab:: Linux
 
         .. code-block:: console
 
             (venv)$ which python
-            <path/to/your/project>/my_first_scraper/venv/bin/python
 
-If the path returned is not of this shape, reiterate the command from :ref:`tuto-activate-env`
+If the path returned is not in the project sub-directory, reiterate the command from `above <activate_env_>`_.
 
 
 Download the library
 """"""""""""""""""""
 
-To use the library, we need first to download it. For that, the standard tool is ``pip``:
+To use the library, we need to download it. For that, the standard tool is ``pip``:
 
 .. code-block:: console
 
     (venv)$ pip install git+https://github.com/Gamma120/minimal-web-scraper.git
 
-If ``pip`` don't throw an error, the library is installed and available to use in your project.
+Verify the library is installed:
 
+.. code-block::
 
-.. note::
-    Dependencies
+    (venv)$ pip list
 
-
-    Those are the libraries that minimal-web-scraper uses to work:
-
-    |requires-dist|
-
-    They are automatically downloaded and installed with minimal-web-scraper.
-
-
-.. note::
-    The library is not published on Pypi_, this is why we use the github repository URL. See `VCS support`_ on pip documentation.
+``minimal-web-scraper`` must be in the list returned.
 
 
 Next
@@ -202,5 +241,4 @@ Next
 
 Next, you will see how to use the library to create your first scraper.
 
-.. _Pypi: https://pypi.org/
-.. _VCS support: https://pip.pypa.io/en/stable/topics/vcs-support/
+.. _Git: https://git-scm.com/

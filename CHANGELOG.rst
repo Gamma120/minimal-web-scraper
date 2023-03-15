@@ -27,7 +27,7 @@ Here is a template for a section of the changelog.
     Improvements
     ^^^^^^^^^^^^
 
-    Changes on the code that add or change functionnalities.
+    Changes on the code that add or change functionalities.
 
     Dependencies
     ^^^^^^^^^^^^
@@ -42,7 +42,7 @@ Here is a template for a section of the changelog.
     Documentation
     ^^^^^^^^^^^^^
 
-    Changes on the documentation or non logic files (README, CHANGELOG...).
+    Changes on the documentation or none logic files (README, CHANGELOG...).
 
     Quality assurance
     ^^^^^^^^^^^^^^^^^

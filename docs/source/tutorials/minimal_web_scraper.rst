@@ -16,7 +16,7 @@ The project name for this example is ``my_first_scraper``, feel free to replace 
 Parsers
 -------
 
-The file ``parsers_example.py`` hosts the code of our parsers.
+The file ``parser_example.py`` hosts the code of our parsers.
 
 The purpose of this function is to grab the informations we want from the page and to pack it in a dictionary we can easily manipulate.
 
@@ -30,7 +30,7 @@ This is the minimal required in a parser from the library.
         scope_url = ""
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             return []
 
 
@@ -45,7 +45,7 @@ In our case, the parser parses the data from https://books.toscrape.com/, so it 
         scope_url = "books.toscrape.com" 
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             return []
 
 The ``parser`` method receives a ``html_content`` as an argument. It is the text file that contains the informations we want to extract.
@@ -64,7 +64,7 @@ It will do most of the work for us.
         scope_url = "books.toscrape.com" 
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
             return []
 
@@ -83,7 +83,7 @@ Each element ``book`` of this list contains informations on one book. In a ``for
         scope_url = "books.toscrape.com" 
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             scraped_items = []
             soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
             books = soup.find_all("article", class_="product_pod")
@@ -116,7 +116,7 @@ We extract the informations we want.
         scope_url = "books.toscrape.com" 
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             scraped_items = []
             soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
             books = soup.find_all("article", class_="product_pod")
@@ -154,7 +154,7 @@ Optionally, we format the data:
         scope_url = "books.toscrape.com" 
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             scraped_items = []
             soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
             books = soup.find_all("article", class_="product_pod")
@@ -198,7 +198,7 @@ Here what it looks like at the end:
         scope_url = "books.toscrape.com" 
 
         @classmethod
-        def parser(cls, html_content, encoding):
+        def parse(cls, html_content, encoding):
             scraped_items = []
             soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
             books = soup.find_all("article", class_="product_pod")
@@ -246,30 +246,21 @@ Now the project structure is:
     my_first_scraper
     |
     |- main.py
-    |- parser.py
+    |- parser_example.py
     |- venv
 
 Head back to the terminal, we need to install the libraries we used.
 
 .. code-block:: console
 
-    (venv)$ pip install bs4
+    (venv)$ pip install bs4 pandas
 
 Then, we can finally run our program:
 
-.. tabs::
+.. code-block:: console
 
-    .. group-tab:: Windows
+    (venv)$ python main.py
 
-        .. code-block:: console
-
-            (venv)> py main.py
-
-    .. group-tab:: Linux
-
-        .. code-block:: console
-
-            (venv)$ python main.py
 
 Here is the result:
 

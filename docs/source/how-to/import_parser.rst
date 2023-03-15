@@ -11,7 +11,7 @@ You have a parser in a file named ``my_parser.py`` and want to use it in your sc
 
     parsers.add_parser()
 
-To make minimal-web-scraper aware of your parser, import the parsers package from the library and call ``parsers.add_parser()`` method.
+To make ``minimal-web-scraper`` aware of your parser, import the ``parsers`` subpackage from the library and call ``parsers.add_parser()`` method.
 This method will automatically make the parsers in ``my_parser`` available to the library.
 If you want to import a specific parser, for example ``ParserExample``, pass it as an argument.
 
