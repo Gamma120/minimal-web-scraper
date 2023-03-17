@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "minimal-web-scraper"
-version = "0.0.0"
+version = "0.1"
 description = "A small library to scrape web pages"
 authors = ["gamma_120 <gamma_120+github@simplelogin.com>"]
 

@@ -52,6 +52,6 @@ Here is a template for a section of the changelog.
 0.1
 ---
 
-Unreleased
+2023-03-17
 
 - First release of the project.
