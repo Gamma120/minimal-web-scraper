@@ -1,31 +1,41 @@
 from typing import Type, Any
+from urllib.parse import urlparse
+import re
 
 from .base import BaseParser
-from .exceptions import ParserNotFound
 
 
-def find_parser(url: str) -> Type[BaseParser]:
+def find_parser(url: str) -> Type[BaseParser] | None:
     """Find the parser for the associate URL.
 
-    The scope_url attribute of the parser is compared to the argument.
+    The scope_urls attribute of the parser is compared to the argument.
 
     :param url:
     :raise ParserNotFound: raised when no registered parser can handle `url`
     :returns: associated parser
     """
-    selected_parser = None
-    most_index = 0
+    url_parsed = urlparse(url)
+
     for parser in _parsers:
-        index = url.find(parser.scope_url)
-        tmp_index = index + len(parser.scope_url)
-        if index != -1 and tmp_index > most_index:
-            most_index = tmp_index
-            selected_parser = parser
+        for scope_url in parser.scope_urls:
+            scope_parsed = urlparse(scope_url)
+            if url_parsed.netloc == scope_parsed.netloc:
+                path = _pattern(scope_parsed.path)
+                if re.fullmatch(path, url_parsed.path):
+                    return parser
 
-    if not selected_parser:
-        raise ParserNotFound(f"No parser found for the URL: {url}")
+    return None
 
-    return selected_parser
+
+def _pattern(path: str):
+    # based on https://www.rfc-editor.org/rfc/rfc3986#section-2.3
+    pattern = "(\w|-|.|_|~)*"
+    path_splited = re.split("{" + pattern + "}", path)
+    full_pattern = ""
+    for i in range(len(path_splited) - 1):
+        full_pattern += path_splited[i] + pattern
+    full_pattern += path_splited[-1]
+    return full_pattern
 
 
 def add_parser(parser: Type[BaseParser] | None = None) -> None:

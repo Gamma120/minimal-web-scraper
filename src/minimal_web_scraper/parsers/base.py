@@ -5,11 +5,11 @@ from typing import Any
 class BaseParser(metaclass=ABCMeta):
     """Base class for creating custom parsers.
 
-    Subclasses must override :meth:`parse` and :attr:`scope_url`.
+    Subclasses must override :meth:`parse` and :attr:`scope_urls`.
     Parsers are not intended to be instantiated.
     """
 
-    scope_url: str
+    scope_urls: list[str]
     """Define which URLs the parser is intended to parse."""
 
     @classmethod
@@ -18,7 +18,7 @@ class BaseParser(metaclass=ABCMeta):
 
     @classmethod
     def __str__(cls) -> str:
-        return f"{cls.__class__.__name__} {cls.scope_url}"
+        return f"{cls.__class__.__name__} {cls.scope_urls}"
 
     @classmethod
     @abstractmethod

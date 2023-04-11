@@ -5,8 +5,8 @@ from minimal_web_scraper import parsers
 
 @pytest.fixture
 def set_parsers():
-    parsers.utils.add_parser(ParserTest)
-    parsers.utils.add_parser(ParserTestList)
+    parsers.utils.add_parser(BooksParser)
+    parsers.utils.add_parser(BookParser)
 
 
 # need to clean the parser list for test isolation
@@ -16,29 +16,34 @@ def del_parsers():
 
 
 def test_find_parser(set_parsers):
-    url = "test.com"
+    url = "https://books.toscrape.com/"
     parser = parsers.utils.find_parser(url)
-    assert parser is ParserTest
+    assert parser is BooksParser
 
-    url = "test.com/list"
+    url = "https://books.toscrape.com/catalogue/category/books/mystery_3/index.html"
     parser = parsers.utils.find_parser(url)
-    assert parser is ParserTestList
+    assert parser is BooksParser
+
+    url = "https://books.toscrape.com/catalogue/the-last-mile-amos-decker-2_754/index.html"
+    parser = parsers.utils.find_parser(url)
+    assert parser is BookParser
 
 
 def test_exception_find_parser(set_parsers):
-    url = "example.com"
-    with pytest.raises(parsers.exceptions.ParserNotFound):
-        parsers.utils.find_parser(url)
+    url = "https://example.com"
+    parser = parsers.utils.find_parser(url)
+
+    assert parser is None
 
 
 def test_add_parser():
-    parsers.utils.add_parser(ParserTest)
+    parsers.utils.add_parser(BooksParser)
     assert len(parsers.utils._parsers) == 1
-    assert parsers.utils._parsers.pop() is ParserTest
+    assert parsers.utils._parsers.pop() is BooksParser
 
 
 def test_add_imported_parser():
-    desirable_result = {ParserTest, ParserTestList}
+    desirable_result = {BooksParser, BookParser}
     parsers.utils.add_parser()
     assert len(parsers.utils._parsers) == 2
     assert parsers.utils._parsers == desirable_result
@@ -51,16 +56,20 @@ def test_exception_add_parser():
         parsers.utils.add_parser(NotAParser)
 
 
-class ParserTest(parsers.base.BaseParser):
-    scope_url = "test.com"
+class BooksParser(parsers.base.BaseParser):
+    scope_urls = [
+        "https://books.toscrape.com/",
+        "https://books.toscrape.com/catalogue/category/book_1/index.html",
+        "https://books.toscrape.com/catalogue/category/books/{category}/index.html",
+    ]
 
     @classmethod
     def parse(cls, html_content, encoding):
         pass
 
 
-class ParserTestList(ParserTest):
-    scope_url = "test.com/list"
+class BookParser(BooksParser):
+    scope_urls = ["https://books.toscrape.com/catalogue/{book-name}/index.html"]
 
 
 class NotAParser:

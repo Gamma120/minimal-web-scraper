@@ -5,6 +5,7 @@ from typing import Any
 import requests
 
 from .parsers.utils import find_parser
+from .parsers.exceptions import ParserNotFound
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) \
@@ -55,8 +56,12 @@ def scrape(url: str) -> Any:
 
     :param url: URL to parse
     :return: extracted informations by a implemented :meth:`parsers.BaseParser.parse`
+    :raise: :meth:`parsers.exceptions.ParserNotFound`
     """
     parser = find_parser(url)
+    if not parser:
+        raise ParserNotFound(f"No parser found for the URL: {url}")
+
     content, encoding = download(url)
     scraped_content = parser.parse(content, encoding)
     return scraped_content

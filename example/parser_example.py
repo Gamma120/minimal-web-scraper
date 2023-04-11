@@ -9,7 +9,11 @@ from minimal_web_scraper.parsers import BaseParser
 class BooksParser(BaseParser):
     base_url = "https://books.toscrape.com/"
 
-    scope_url = "books.toscrape.com"
+    scope_urls = [
+        "https://books.toscrape.com",
+        "https://books.toscrape.com/catalogue/category/book_1/index.html",
+        "https://books.toscrape.com/catalogue/category/books/{category}/index.html",
+    ]
 
     @classmethod
     def parse(cls, html_content: bytes, encoding: str | None) -> list[dict]:
@@ -46,16 +50,14 @@ class BooksParser(BaseParser):
 class BookParser(BaseParser):
     base_url = "https://books.toscrape.com/"
 
-    scope_url = "books.toscrape.com/catalogue/"
+    scope_urls = ["https://books.toscrape.com/catalogue/{book-name}/index.html"]
 
     @classmethod
-    def parse(
-        cls, html_content: bytes, encoding: str | None
-    ) -> dict[str, str | float | int | None]:
+    def parse(cls, html_content: bytes, encoding: str | None) -> dict:
         soup = BeautifulSoup(html_content, "html.parser", from_encoding=encoding)
         book = soup.find("article", class_="product_page")
 
-        item: dict[str, str | float | int | None] = {
+        item = {
             "name": None,
             "url": None,
             "availability": None,
