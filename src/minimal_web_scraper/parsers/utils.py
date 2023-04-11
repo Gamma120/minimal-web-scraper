@@ -20,18 +20,18 @@ def find_parser(url: str) -> Type[BaseParser] | None:
         for scope_url in parser.scope_urls:
             scope_parsed = urlparse(scope_url)
             if url_parsed.netloc == scope_parsed.netloc:
-                path = _pattern(scope_parsed.path)
-                if re.fullmatch(path, url_parsed.path):
+                pattern = _pattern(scope_parsed.path)
+                if re.fullmatch(pattern, url_parsed.path):
                     return parser
 
     return None
 
 
-def _pattern(path: str):
+def _pattern(path: str) -> str:
     # based on https://www.rfc-editor.org/rfc/rfc3986#section-2.3
-    pattern = "(\w|-|.|_|~)*"
+    pattern = r"[\w|\-|.|_|~]*"
     path_splited = re.split("{" + pattern + "}", path)
-    full_pattern = ""
+    full_pattern: str = ""
     for i in range(len(path_splited) - 1):
         full_pattern += path_splited[i] + pattern
     full_pattern += path_splited[-1]

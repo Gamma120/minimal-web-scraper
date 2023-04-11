@@ -28,12 +28,23 @@ def test_find_parser(set_parsers):
     parser = parsers.utils.find_parser(url)
     assert parser is BookParser
 
-
-def test_exception_find_parser(set_parsers):
     url = "https://example.com"
     parser = parsers.utils.find_parser(url)
 
     assert parser is None
+
+
+def test_pattern():
+    pattern = r"[\w|\-|.|_|~]*"
+
+    path = "/a/b/c.html"
+    assert parsers.utils._pattern(path) == path
+
+    path = "/a/{example}/b.html"
+    assert parsers.utils._pattern(path) == f"/a/{pattern}/b.html"
+
+    path = "/a/{e-._~}/{example-1}/b/{example-2}.html"
+    assert parsers.utils._pattern(path) == f"/a/{pattern}/{pattern}/b/{pattern}.html"
 
 
 def test_add_parser():
@@ -60,7 +71,7 @@ class BooksParser(parsers.base.BaseParser):
     scope_urls = [
         "https://books.toscrape.com/",
         "https://books.toscrape.com/catalogue/category/book_1/index.html",
-        "https://books.toscrape.com/catalogue/category/books/{category}/index.html",
+        "https://books.toscrape.com/catalogue/category/books/{category-name}/index.html",
     ]
 
     @classmethod
