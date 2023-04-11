@@ -49,6 +49,19 @@ Here is a template for a section of the changelog.
 
     Changes on CI, tools or code that improve the quality of the code.
 
+
+0.1.1
+-----
+
+2023-04-11
+
+Bug fixes
+^^^^^^^^^
+
+- change :func:`minimal_web_scraper.parsers.utils.find_parser` to enable better matching patterns
+- change imports in ``__init__.py`` files to have import suggestions
+
+
 0.1
 ---
 
