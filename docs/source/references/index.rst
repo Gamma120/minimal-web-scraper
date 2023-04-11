@@ -5,5 +5,5 @@ References
 .. toctree::
     :maxdepth: 2
 
-    scope_url
+    scope_urls
 

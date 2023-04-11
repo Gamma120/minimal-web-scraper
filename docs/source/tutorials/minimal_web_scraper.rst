@@ -27,14 +27,14 @@ This is the minimal required in a parser from the library.
     from minimal_web_scraper.parsers import BaseParser
 
     class Parser(BaseParser):
-        scope_url = ""
+        scope_urls = []
 
         @classmethod
         def parse(cls, html_content, encoding):
             return []
 
 
-In our case, the parser parses the data from https://books.toscrape.com/, so it is our ``scope_url``.
+In our case, the parser parses the data from https://books.toscrape.com/, so it is our ``scope_urls``.
 
 .. code-block:: python
     :emphasize-lines: 4
@@ -42,7 +42,7 @@ In our case, the parser parses the data from https://books.toscrape.com/, so it 
     from minimal_web_scraper.parsers import BaseParser
 
     class Parser(BaseParser):
-        scope_url = "books.toscrape.com" 
+        scope_urls = ["https://books.toscrape.com"] 
 
         @classmethod
         def parse(cls, html_content, encoding):
@@ -61,7 +61,7 @@ It will do most of the work for us.
     from minimal_web_scraper.parsers import BaseParser
 
     class Parser(BaseParser):
-        scope_url = "books.toscrape.com" 
+        scope_urls = ["https://books.toscrape.com"]
 
         @classmethod
         def parse(cls, html_content, encoding):
@@ -80,7 +80,7 @@ Each element ``book`` of this list contains informations on one book. In a ``for
     from minimal_web_scraper.parsers import BaseParser
 
     class Parser(BaseParser):
-        scope_url = "books.toscrape.com" 
+        scope_urls = ["https://books.toscrape.com"] 
 
         @classmethod
         def parse(cls, html_content, encoding):
@@ -113,7 +113,7 @@ We extract the informations we want.
 
     class Parser(BaseParser):
         base_url = "https://books.toscrape.com/"
-        scope_url = "books.toscrape.com" 
+        scope_urls = ["https://books.toscrape.com"] 
 
         @classmethod
         def parse(cls, html_content, encoding):
@@ -151,7 +151,7 @@ Optionally, we format the data:
 
     class Parser(BaseParser):
         base_url = "https://books.toscrape.com/"
-        scope_url = "books.toscrape.com" 
+        scope_urls = ["https://books.toscrape.com"] 
 
         @classmethod
         def parse(cls, html_content, encoding):
@@ -195,7 +195,7 @@ Here what it looks like at the end:
 
     class Parser(BaseParser):
         base_url = "https://books.toscrape.com/"
-        scope_url = "books.toscrape.com" 
+        scope_urls = ["https://books.toscrape.com"]
 
         @classmethod
         def parse(cls, html_content, encoding):

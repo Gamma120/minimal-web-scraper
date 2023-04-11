@@ -10,14 +10,14 @@ Here is the skeleton of a parser compatible with the library:
     from minimal_web_scraper import BaseParser
 
     class ExampleParser(BaseParser):
-        scope_url = ""
+        scope_urls = []
 
         @classmethod
         def parse(cls, html_content, encoding):
             return []
 
 - The parser **must** inherit from the ``BaseParser`` class from the library.
-- It **must** contain ``scope_url`` variable and a ``parse`` method.
+- It **must** contain ``scope_urls`` variable and a ``parse`` method.
 - ``parse`` method **must** be a ``@classmethod`` and return a list of dictionary elements.
 
 The recommended tools to write the ``parse`` method are the ``BeautifulSoup`` and ``re`` libraries.
