@@ -35,7 +35,7 @@ def test_find_parser(set_parsers):
 
 
 def test_pattern():
-    pattern = r"[\w|\-|.|_|~]*"
+    pattern = r"[\w|\-|.|_|~|%]*"
 
     path = "/a/b/c.html"
     assert parsers.utils._pattern(path) == path
@@ -43,7 +43,7 @@ def test_pattern():
     path = "/a/{example}/b.html"
     assert parsers.utils._pattern(path) == f"/a/{pattern}/b.html"
 
-    path = "/a/{e-._~}/{example-1}/b/{example-2}.html"
+    path = "/a/{e-._~}/{example-1}/b/{example-%2}.html"
     assert parsers.utils._pattern(path) == f"/a/{pattern}/{pattern}/b/{pattern}.html"
 
 

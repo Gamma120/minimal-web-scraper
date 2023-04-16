@@ -29,7 +29,7 @@ def find_parser(url: str) -> Type[BaseParser] | None:
 
 def _pattern(path: str) -> str:
     # based on https://www.rfc-editor.org/rfc/rfc3986#section-2.3
-    pattern = r"[\w|\-|.|_|~]*"
+    pattern = r"[\w|\-|.|_|~|%]*"
     path_splited = re.split("{" + pattern + "}", path)
     full_pattern: str = ""
     for i in range(len(path_splited) - 1):
